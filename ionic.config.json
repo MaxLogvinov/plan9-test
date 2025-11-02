@@ -1,0 +1,7 @@
+{
+  "name": "plan9-test-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
