@@ -17,7 +17,6 @@ import Profile from './pages/Profile';
 import Login from './pages/Login';
 import { useSelector } from 'react-redux';
 import type { RootState } from './store';
-
 import '@ionic/react/css/core.css';
 import '@ionic/react/css/normalize.css';
 import '@ionic/react/css/structure.css';
@@ -25,31 +24,39 @@ import '@ionic/react/css/typography.css';
 import '@ionic/react/css/padding.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
-import './theme/variables.css';
+import './styles/global.css';
 
 setupIonicReact();
 
+const PrivateRoute: React.FC<{ component: React.FC; path: string; exact?: boolean }> = ({
+  component: Component,
+  path,
+  exact
+}) => {
+  const { isAuthenticated } = useSelector((state: RootState) => state.user);
+  return isAuthenticated ? (
+    <Route path={path} exact={exact} component={Component} />
+  ) : (
+    <Redirect to="/" />
+  );
+};
+
 const App: React.FC = () => {
   const { isAuthenticated } = useSelector((state: RootState) => state.user);
-
   return (
     <IonApp>
       <IonReactRouter>
         <IonRouterOutlet>
-          {!isAuthenticated ? (
-            <Route exact path="/">
-              <Login />
-            </Route>
-          ) : (
+          <Route exact path="/" component={Login} />
+          {isAuthenticated ? (
             <Route path="/tabs">
               <IonTabs>
                 <IonRouterOutlet>
-                  <Route exact path="/tabs/home" component={Home} />
-                  <Route exact path="/tabs/orders" component={Orders} />
-                  <Route exact path="/tabs/profile" component={Profile} />
+                  <PrivateRoute exact path="/tabs/home" component={Home} />
+                  <PrivateRoute exact path="/tabs/orders" component={Orders} />
+                  <PrivateRoute exact path="/tabs/profile" component={Profile} />
                   <Redirect exact from="/tabs" to="/tabs/home" />
                 </IonRouterOutlet>
-
                 <IonTabBar slot="bottom">
                   <IonTabButton tab="home" href="/tabs/home">
                     <IonIcon icon={home} />
@@ -66,6 +73,8 @@ const App: React.FC = () => {
                 </IonTabBar>
               </IonTabs>
             </Route>
+          ) : (
+            <Redirect to="/" />
           )}
         </IonRouterOutlet>
       </IonReactRouter>

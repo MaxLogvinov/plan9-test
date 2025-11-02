@@ -6,7 +6,11 @@ import {
   IonContent,
   IonInput,
   IonButton,
-  IonText
+  IonText,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardTitle
 } from '@ionic/react';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,7 +22,6 @@ const Login: React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { error, isAuthenticated } = useSelector((state: RootState) => state.user);
-
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -37,33 +40,38 @@ const Login: React.FC = () => {
           <IonTitle>Авторизация</IonTitle>
         </IonToolbar>
       </IonHeader>
+      <IonContent className="ion-padding" style={{ '--background': 'var(--ion-color-light)' }}>
+        <IonCard style={{ margin: '20px auto', maxWidth: '400px', borderRadius: '10px' }}>
+          <IonCardHeader>
+            <IonCardTitle>Вход</IonCardTitle>
+          </IonCardHeader>
+          <IonCardContent>
+            <IonInput
+              label="Логин"
+              labelPlacement="floating"
+              fill="outline"
+              value={username}
+              onIonChange={e => setUsername(e.detail.value!)}
+              className="ion-margin-bottom"
+            />
+            <IonInput
+              label="Пароль"
+              type="password"
+              labelPlacement="floating"
+              fill="outline"
+              value={password}
+              onIonChange={e => setPassword(e.detail.value!)}
+              className="ion-margin-bottom"
+            />
+            <IonText color="danger" style={{ display: 'flex', minHeight: '30px' }}>
+              {error && <p>{error}</p>}
+            </IonText>
 
-      <IonContent className="ion-padding">
-        <IonInput
-          label="Логин"
-          labelPlacement="floating"
-          fill="outline"
-          value={username}
-          onIonChange={e => setUsername(e.detail.value!)}
-        />
-        <IonInput
-          label="Пароль"
-          type="password"
-          labelPlacement="floating"
-          fill="outline"
-          value={password}
-          onIonChange={e => setPassword(e.detail.value!)}
-        />
-
-        {error && (
-          <IonText color="danger" className="ion-margin-top">
-            <p>{error}</p>
-          </IonText>
-        )}
-
-        <IonButton expand="block" className="ion-margin-top" onClick={handleLogin}>
-          Войти
-        </IonButton>
+            <IonButton expand="block" className="ion-margin-top" onClick={handleLogin}>
+              Войти
+            </IonButton>
+          </IonCardContent>
+        </IonCard>
       </IonContent>
     </IonPage>
   );

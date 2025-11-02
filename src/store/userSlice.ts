@@ -6,11 +6,22 @@ interface UserState {
   error: string | null;
 }
 
-const initialState: UserState = {
-  username: null,
-  isAuthenticated: false,
-  error: null
+const loadFromLocalStorage = (): UserState => {
+  const savedState = localStorage.getItem('userState');
+  return savedState
+    ? JSON.parse(savedState)
+    : {
+        username: null,
+        isAuthenticated: false,
+        error: null
+      };
 };
+
+const saveToLocalStorage = (state: UserState) => {
+  localStorage.setItem('userState', JSON.stringify(state));
+};
+
+const initialState: UserState = loadFromLocalStorage();
 
 const userSlice = createSlice({
   name: 'user',
@@ -22,6 +33,7 @@ const userSlice = createSlice({
         state.username = username;
         state.isAuthenticated = true;
         state.error = null;
+        saveToLocalStorage(state);
       } else {
         state.error = 'Введите логин и пароль';
       }
@@ -30,6 +42,7 @@ const userSlice = createSlice({
       state.username = null;
       state.isAuthenticated = false;
       state.error = null;
+      saveToLocalStorage(state);
     },
     setError(state, action: PayloadAction<string | null>) {
       state.error = action.payload;
