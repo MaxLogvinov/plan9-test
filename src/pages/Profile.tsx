@@ -9,7 +9,7 @@ import {
 } from '@ionic/react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store';
-import { logout } from '../store/userSlice';
+import { logout } from '../store/slices/userSlice';
 
 const Profile: React.FC = () => {
   const dispatch = useDispatch();
@@ -22,13 +22,23 @@ const Profile: React.FC = () => {
           <IonTitle>Профиль</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-padding">
+      <IonContent
+        className="ion-padding"
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'column',
+          textAlign: 'center',
+          height: '100%'
+        }}
+      >
         <IonText>
           <p>
             Имя пользователя: <strong>{username}</strong>
           </p>
         </IonText>
-        <IonButton expand="block" color="danger" onClick={() => dispatch(logout())}>
+        <IonButton color="danger" size="default" onClick={() => dispatch(logout())}>
           Выйти
         </IonButton>
       </IonContent>

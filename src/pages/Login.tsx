@@ -14,7 +14,7 @@ import {
 } from '@ionic/react';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../store/userSlice';
+import { login } from '../store/slices/userSlice';
 import type { RootState } from '../store';
 import { useHistory } from 'react-router-dom';
 

@@ -15,10 +15,7 @@ const Home: React.FC = () => (
           justifyContent: 'center',
           height: '90%',
           textAlign: 'center',
-          fontWeight: 800,
-          fontSize: '54px',
-          lineHeight: '100%',
-          fontFamily: 'Gilroy, sans-serif'
+          fontSize: '54px'
         }}
       >
         Добро пожаловать!
