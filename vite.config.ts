@@ -6,7 +6,6 @@ export default defineConfig({
   base: '/plan9-test/',
   plugins: [
     react(),
-        base: '/plan9-test/',
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
