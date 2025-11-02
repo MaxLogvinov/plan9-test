@@ -26,3 +26,7 @@ h1 {
   font-family: 'Gilroy', sans-serif;
   font-weight: 800;
 }
+
+.ion-invalid.ion-touched {
+  --border-color: var(--ion-color-danger);
+}
