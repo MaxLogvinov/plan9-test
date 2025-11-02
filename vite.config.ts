@@ -9,20 +9,20 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
-        name: 'My App',
-        short_name: 'App',
-        start_url: '/',
+        name: 'plan9-test',
+        short_name: 'plan9-test',
+        start_url: '.',
         display: 'standalone',
         background_color: '#ffffff',
         theme_color: '#317EFB',
         icons: [
           {
-            src: '/icon-192x192.png',
+            src: 'icon-192x192.png',
             sizes: '192x192',
             type: 'image/png'
           },
           {
-            src: '/icon-512x512.png',
+            src: 'icon-512x512.png',
             sizes: '512x512',
             type: 'image/png'
           }
