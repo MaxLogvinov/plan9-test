@@ -3,8 +3,10 @@ import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
+  base: '/plan9-test/',
   plugins: [
     react(),
+        base: '/plan9-test/',
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
