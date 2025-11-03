@@ -9,7 +9,7 @@ import {
   IonTabs,
   setupIonicReact
 } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
+import { IonReactHashRouter } from '@ionic/react-router';
 import { home, list, person } from 'ionicons/icons';
 import Home from '../pages/Home';
 import Orders from '../pages/Orders';
@@ -19,12 +19,6 @@ import { useSelector } from 'react-redux';
 import type { RootState } from '../store';
 import PrivateRoute from './PrivateRoute';
 import '@ionic/react/css/core.css';
-import '@ionic/react/css/normalize.css';
-import '@ionic/react/css/structure.css';
-import '@ionic/react/css/typography.css';
-import '@ionic/react/css/padding.css';
-import '@ionic/react/css/flex-utils.css';
-import '@ionic/react/css/display.css';
 import '../styles/global.css';
 
 setupIonicReact();
@@ -34,7 +28,7 @@ const App: React.FC = () => {
 
   return (
     <IonApp>
-      <IonReactRouter>
+      <IonReactHashRouter>
         <IonRouterOutlet>
           <Route exact path="/" component={Login} />
           {isAuthenticated ? (
@@ -46,16 +40,17 @@ const App: React.FC = () => {
                   <PrivateRoute exact path="/tabs/profile" component={Profile} />
                   <Redirect exact from="/tabs" to="/tabs/home" />
                 </IonRouterOutlet>
+
                 <IonTabBar slot="bottom">
-                  <IonTabButton tab="home" href="/tabs/home">
+                  <IonTabButton tab="home" href="#/tabs/home">
                     <IonIcon icon={home} />
                     <IonLabel>Главная</IonLabel>
                   </IonTabButton>
-                  <IonTabButton tab="orders" href="/tabs/orders">
+                  <IonTabButton tab="orders" href="#/tabs/orders">
                     <IonIcon icon={list} />
                     <IonLabel>Заказы</IonLabel>
                   </IonTabButton>
-                  <IonTabButton tab="profile" href="/tabs/profile">
+                  <IonTabButton tab="profile" href="#/tabs/profile">
                     <IonIcon icon={person} />
                     <IonLabel>Профиль</IonLabel>
                   </IonTabButton>
@@ -66,7 +61,7 @@ const App: React.FC = () => {
             <Redirect to="/" />
           )}
         </IonRouterOutlet>
-      </IonReactRouter>
+      </IonReactHashRouter>
     </IonApp>
   );
 };
