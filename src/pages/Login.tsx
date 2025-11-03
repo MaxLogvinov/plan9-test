@@ -12,7 +12,7 @@ import {
   IonCardHeader,
   IonCardTitle
 } from '@ionic/react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../store/slices/userSlice';
 import type { RootState } from '../store';
@@ -39,10 +39,11 @@ const Login: React.FC = () => {
     dispatch(login(values));
   };
 
-  if (isAuthenticated) {
-    history.push('/tabs/home');
-  }
-
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.replace('/tabs/home');
+    }
+  }, [isAuthenticated, history]);
   return (
     <IonPage>
       <IonHeader>

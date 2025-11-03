@@ -42,15 +42,17 @@ const App: React.FC = () => {
                 </IonRouterOutlet>
 
                 <IonTabBar slot="bottom">
-                  <IonTabButton tab="home" href="#/tabs/home">
+                  <IonTabButton tab="home" href="/tabs/home">
                     <IonIcon icon={home} />
                     <IonLabel>Главная</IonLabel>
                   </IonTabButton>
-                  <IonTabButton tab="orders" href="#/tabs/orders">
+
+                  <IonTabButton tab="orders" href="/tabs/orders">
                     <IonIcon icon={list} />
                     <IonLabel>Заказы</IonLabel>
                   </IonTabButton>
-                  <IonTabButton tab="profile" href="#/tabs/profile">
+
+                  <IonTabButton tab="profile" href="/tabs/profile">
                     <IonIcon icon={person} />
                     <IonLabel>Профиль</IonLabel>
                   </IonTabButton>

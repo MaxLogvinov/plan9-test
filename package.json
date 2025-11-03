@@ -60,5 +60,6 @@
   "overrides": {
     "rollup": "4.44.0"
   },
-  "description": "Test task for Plan9"
+  "description": "Test task for Plan9",
+  "homepage": "https://maxlogvinov.github.io/plan9-test/"
 }
